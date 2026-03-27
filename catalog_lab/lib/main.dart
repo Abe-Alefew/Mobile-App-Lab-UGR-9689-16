@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const CatalogApp());
+
+class CatalogApp extends StatelessWidget{
+  const CatalogApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Product Catalog',
+      theme: ThemeData(primarySwatch: Colors.orange),
+      home: CatalogScreen(),
+    );
+  }
+}
+
+class Product {
+  final String name;
+  final String price;
+  final String imageUrl;
+  final Color color;
+
+  Product({
+    required this.name,
+    required this.price,
+    required this.imageUrl,
+    required this.color,
+  });
+}
+
+
+
+class CatalogScreen extends StatelessWidget{
+  CatalogScreen({super.key});
+
+  // sample data
+  final List<Product> products = [
+    Product(name: 'Coffee Mug', price: '\$25', imageUrl: 'assets/images/coffee_mug.jpg', color: Colors.brown),
+    Product(name: 'Headphones', price: '\$150', imageUrl: 'assets/images/headphones.jpg', color: Colors.blue),
+    Product(name: 'Smart Watch', price: '\$200', imageUrl: 'assets/images/smart_watch.jpg', color: Colors.green),
+    Product(name: 'Backpack', price: '\$80', imageUrl: 'assets/images/backpack.jpg', color: Colors.red),
+    Product(name: 'Sneakers', price: '\$120', imageUrl: 'assets/images/sneakers.jpg', color: Colors.grey),
+    Product(name: 'Pen Set', price: '\$40', imageUrl: 'assets/images/pen_set.jpg', color: Colors.black)
+  ];
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(title: const Text('Catalog'),),
+      body: Padding(padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.75,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            ),
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            final product = products[index];
+            return Card(
+              color: product.color.withValues(alpha: 0.1),
+              child: InkWell(
+                onTap: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('You selected ${product.name}')));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: Image.network(product.imageUrl, fit: BoxFit.cover,)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        product.name,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Text(product.price),
+                    const SizedBox(height:8),
+                  ],
+                ),
+              )
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
