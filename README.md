@@ -47,7 +47,18 @@
 ### Widget Tree
 ![Registration Widget Tree](screenshots/widget_tree_register.png)
 
+
 ---
+
+## 5) Go Routing Lab
+
+### Screenshot
+![Home](screenshots/go_router_demo/home_goRouter.png)
+![Details](screenshots/go_router_demo/details_goRouter.png)
+![Product](screenshots/go_router_demo/product_goRouter.png)
+
+### Widget Tree
+![Go Routing Widget Tree](screenshots/go_router_demo/widget_tree.png)
 
 ## Notes
 All screenshots are stored in the `screenshots` folder.
