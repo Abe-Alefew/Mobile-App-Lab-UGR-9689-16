@@ -1,0 +1,13 @@
+# Ignore everything by default
+*
+
+# Keep this file tracked
+!.gitignore
+!.metadata
+!analysis_options.yaml
+!pubspec.yaml
+
+# Keep only lib/main.dart tracked
+!lib/
+lib/*
+!lib/main.dart
